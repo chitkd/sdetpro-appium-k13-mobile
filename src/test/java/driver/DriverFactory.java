@@ -12,7 +12,7 @@ public class DriverFactory {
         AppiumDriver appiumDriver = null;
         // DesiredCaps
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
         desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE, "com.wdiodemoapp");
@@ -20,7 +20,7 @@ public class DriverFactory {
         URL appiumServer = null;
 
         try{
-            appiumServer = new URL("http://localhost:4724");
+            appiumServer = new URL("http://localhost:4725");
         } catch (Exception e){
             e.printStackTrace();
         }
