@@ -6,6 +6,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
+import java.time.Duration;
 
 public class DriverFactory {
     public static AppiumDriver getDriver(Platform platform){
@@ -25,6 +26,10 @@ public class DriverFactory {
             e.printStackTrace();
         }
 
+        if (appiumServer == null){
+            throw new RuntimeException("Can't construct the appium server URL");
+        }
+
         switch (platform){
             case ANDROID:
                 appiumDriver = new AndroidDriver(appiumServer, desiredCapabilities);
@@ -34,9 +39,11 @@ public class DriverFactory {
                 break;
         }
 
-        if (appiumDriver == null){
-            throw new RuntimeException("Can't construct the appium server URL");
-        }
+
+        // Need one more thing here that we will talk in next lesson
+        // global wait time applied for the WHOLE driver session - Implicit wait
+
+        appiumDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10L));
 
         return appiumDriver;
     }
