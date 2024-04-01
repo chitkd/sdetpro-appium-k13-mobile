@@ -12,7 +12,7 @@ public class DriverFactory {
         AppiumDriver appiumDriver = null;
         // DesiredCaps
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
         desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE, "com.wdiodemoapp");
@@ -20,13 +20,9 @@ public class DriverFactory {
         URL appiumServer = null;
 
         try{
-            appiumServer = new URL("http://localhost:4725");
+            appiumServer = new URL("http://localhost:4723");
         } catch (Exception e){
             e.printStackTrace();
-        }
-
-        if (appiumDriver == null){
-            throw new RuntimeException("Can't construct the appium server URL");
         }
 
         switch (platform){
@@ -36,6 +32,10 @@ public class DriverFactory {
             case IOS:
                 appiumDriver = new IOSDriver(appiumServer, desiredCapabilities);
                 break;
+        }
+
+        if (appiumDriver == null){
+            throw new RuntimeException("Can't construct the appium server URL");
         }
 
         return appiumDriver;
