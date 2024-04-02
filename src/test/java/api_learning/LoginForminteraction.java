@@ -20,12 +20,12 @@ public class LoginForminteraction {
            // Input username
            By emailFieldLoc = AppiumBy.accessibilityId("input-email");
            WebElement emailFieldEle = appiumDriver.findElement(emailFieldLoc);
-           emailFieldEle.sendKeys("chi@sth.com");
+           emailFieldEle.sendKeys("cindy@sth.com");
 
            // Input password
            By passwordLoc = AppiumBy.accessibilityId("input-password");
            WebElement passwordEle = appiumDriver.findElement(passwordLoc);
-           passwordEle.sendKeys("9876543210");
+           passwordEle.sendKeys("0987654321");
 
            // Try to generate another exception
 
