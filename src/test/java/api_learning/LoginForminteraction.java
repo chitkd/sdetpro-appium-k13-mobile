@@ -6,6 +6,10 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginForminteraction {
     public static void main(String[] args) {
@@ -13,7 +17,8 @@ public class LoginForminteraction {
 
        try{
            // Login Action
-           By navLoginBtnLoc = By.xpath("//android.view.View[@content-desc='Login']");
+         //  By navLoginBtnLoc = By.xpath("//android.view.View[@content-desc='Login']");
+           By navLoginBtnLoc = AppiumBy.accessibilityId("Login");
            WebElement navLoginBtnEle = appiumDriver.findElement(navLoginBtnLoc);
            navLoginBtnEle.click();
 
@@ -33,6 +38,17 @@ public class LoginForminteraction {
            By loginBtnLoc = AppiumBy.accessibilityId("button-LOGIN");
            WebElement loginBtnEle = appiumDriver.findElement(loginBtnLoc);
            loginBtnEle.click();
+
+           // Wait for the dialog displayed
+           By dialogMsgLoc = AppiumBy.id("android:id/message");
+           By dialogBtnLoc = AppiumBy.id("android:id/button1");
+
+           // Using explicit wait
+           WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15));
+           WebElement dialogMsgEle = wait.until(ExpectedConditions.visibilityOfElementLocated(dialogMsgLoc));
+           System.out.printf("Dialog msg: %s\n", dialogMsgEle.getText());
+           appiumDriver.findElement(dialogBtnLoc).click();
+
 
        } catch (Exception e){
            e.printStackTrace();
