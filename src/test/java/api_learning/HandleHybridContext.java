@@ -1,5 +1,6 @@
 package api_learning;
 
+import context.WaitMoreThanOneContext;
 import driver.DriverFactory;
 import driver.Platform;
 import io.appium.java_client.AppiumBy;
@@ -19,23 +20,25 @@ public class HandleHybridContext {
 
         try{
             // Click on the Webview button
-            By formBtnLoc = AppiumBy.accessibilityId("Webview");
+            By formsBtnLoc = AppiumBy.accessibilityId("Webview");
 
             // Navigate to [Webview] screen
-            appiumDriver.findElement(formBtnLoc).click();
+            appiumDriver.findElement(formsBtnLoc).click();
 
             // Get platform info under test session
             Capabilities caps = appiumDriver.getCapabilities();
             String currentPlatform = CapabilityHelpers.getCapability(caps, "platformName", String.class);
+
+
+            // Custom Explicit wait
+            WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15L));
+            wait.until(new WaitMoreThanOneContext(appiumDriver));
 
             if (Platform.valueOf(currentPlatform).equals(Platform.ANDROID)){
                 System.out.println(((AndroidDriver) appiumDriver).getContextHandles());
             } else {
                 System.out.println(((IOSDriver) appiumDriver).getContextHandles());
             }
-
-            // Custom Explicit wait
-            WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(10L));
 
             // DEBUG PURPOSE ONLY
             Thread.sleep(1000);

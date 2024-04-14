@@ -6,20 +6,21 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.interactions.Pause;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+
+import util.*;
 
 public class NarrowdownSearchingScope {
     public static void main(String[] args) {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
 
-        try{
+        try {
             By formBtnLoc = AppiumBy.accessibilityId("Forms");
 
             // Navigate to [Forms] screen
@@ -36,7 +37,6 @@ public class NarrowdownSearchingScope {
             Dimension windowSize = appiumDriver.manage().window().getSize();
             int screenWidth = windowSize.getWidth();
             int screenHeight = windowSize.getHeight();
-            System.out.printf("%d x %d", screenWidth, screenHeight);
 
             // Constructor coordinators
             int startX = 50 * screenWidth / 100;
@@ -44,30 +44,23 @@ public class NarrowdownSearchingScope {
             int endX = startX;
             int endY = 50 * screenHeight / 100;
 
-            // Specify PointerInput as [TOUCH] with name [finger1]
-            PointerInput pointerInput = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
+            // Swipe down to open notification
+            scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
 
-            // Specify sequence
-            Sequence sequence = new Sequence(pointerInput, 1)
-                    .addAction(pointerInput.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
-                    .addAction(pointerInput.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                    .addAction(new Pause(pointerInput, Duration.ofMillis(250)))
-                    .addAction(pointerInput.createPointerMove(Duration.ofMillis(250), PointerInput.Origin.viewport(), endX, endY))
-                    .addAction(pointerInput.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+            //List<WebElement> notificationEleList = appiumDriver.findElements(AppiumBy.id("com.android.systemui:id/expanded"));
+            List<WebElement> notificationEleList = appiumDriver.findElements(AppiumBy.id("android:id/notification_top_line"));
 
-            // Ask appium server to perform the sequence
-            appiumDriver.perform(Collections.singleton(sequence));
+            List<String> notificationTitles = new ArrayList<>();
+            for (WebElement notificationEle : notificationEleList) {
+                // Narrow down searching scope
+                WebElement notificationTileEle = notificationEle.findElement(AppiumBy.id("android:id/title"));
+                String notificationTitleText = notificationTileEle.getText();
+                notificationTitles.add(notificationTitleText);
+            }
 
-
-        } catch (Exception e){
+            System.out.println(notificationTitles);
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-
-
-        // DEBUG PURPOSE ONLY
-        try {
-            Thread.sleep(3000);
-        } catch (Exception ignored){
         }
         appiumDriver.quit();
     }
