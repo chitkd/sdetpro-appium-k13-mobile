@@ -9,18 +9,19 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.Collections;
 
+import util.scrollFeatures;
+
 public class SwipeVertically {
     public static void main(String[] args) {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
 
-        try{
+        try {
             By formBtnLoc = AppiumBy.accessibilityId("Forms");
             By activeBtnLoc = AppiumBy.accessibilityId("button-Active");
 
@@ -38,7 +39,6 @@ public class SwipeVertically {
             Dimension windowSize = appiumDriver.manage().window().getSize();
             int screenWidth = windowSize.getWidth();
             int screenHeight = windowSize.getHeight();
-            System.out.printf("%d x %d", screenWidth, screenHeight);
 
             // Constructor coordinators
             int startX = screenWidth / 2;
@@ -46,24 +46,12 @@ public class SwipeVertically {
             int endX = startX;
             int endY = 10 * screenHeight / 100;
 
-            // Specify PointerInput as [TOUCH] with name [finger1]
-            PointerInput pointerInput = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
-
-            // Specify sequence
-            Sequence sequence = new Sequence(pointerInput, 1)
-                    .addAction(pointerInput.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
-                    .addAction(pointerInput.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                    .addAction(new Pause(pointerInput, Duration.ofMillis(250)))
-                    .addAction(pointerInput.createPointerMove(Duration.ofMillis(250), PointerInput.Origin.viewport(), endX, endY))
-                    .addAction(pointerInput.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-            // Ask appium server to perform the sequence
-            appiumDriver.perform(Collections.singleton(sequence));
+            scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
 
             // Interact with one element on the screen
             appiumDriver.findElement(activeBtnLoc).click();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -71,7 +59,7 @@ public class SwipeVertically {
         // DEBUG PURPOSE ONLY
         try {
             Thread.sleep(3000);
-        } catch (Exception ignored){
+        } catch (Exception ignored) {
         }
         appiumDriver.quit();
     }
