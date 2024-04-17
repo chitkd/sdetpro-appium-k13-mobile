@@ -48,8 +48,6 @@ public class LoginForminteraction {
            WebElement dialogMsgEle = wait.until(ExpectedConditions.visibilityOfElementLocated(dialogMsgLoc));
            System.out.printf("Dialog msg: %s\n", dialogMsgEle.getText());
            appiumDriver.findElement(dialogBtnLoc).click();
-
-
        } catch (Exception e){
            e.printStackTrace();
        }

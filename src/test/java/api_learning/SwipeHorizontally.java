@@ -46,8 +46,9 @@ public class SwipeHorizontally {
             // Specify PointerInput as [TOUCH] with name [finger1]
             PointerInput pointerInput = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
 
-            final int MAX_SWIPE_TIME = 5;
-            for (int swipeCounter = 0; swipeCounter < MAX_SWIPE_TIME; swipeCounter++) {
+            boolean isFoundElement = false;
+            while (!isFoundElement){
+
                 scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
                 Thread.sleep(300);
             }

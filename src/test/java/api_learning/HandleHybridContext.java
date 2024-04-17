@@ -1,5 +1,6 @@
 package api_learning;
 
+import context.Contexts;
 import context.WaitMoreThanOneContext;
 import driver.DriverFactory;
 import driver.Platform;
@@ -10,9 +11,13 @@ import io.appium.java_client.internal.CapabilityHelpers;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HandleHybridContext {
     public static void main(String[] args) {
@@ -21,7 +26,6 @@ public class HandleHybridContext {
         try{
             // Click on the Webview button
             By formsBtnLoc = AppiumBy.accessibilityId("Webview");
-
             // Navigate to [Webview] screen
             appiumDriver.findElement(formsBtnLoc).click();
 
@@ -35,7 +39,41 @@ public class HandleHybridContext {
             wait.until(new WaitMoreThanOneContext(appiumDriver));
 
             if (Platform.valueOf(currentPlatform).equals(Platform.ANDROID)){
-                System.out.println(((AndroidDriver) appiumDriver).getContextHandles());
+                AndroidDriver androidDriver = ((AndroidDriver) appiumDriver);
+                System.out.println((androidDriver.getContextHandles()));
+
+                // SWITCH to the WEBVIEW CONTEXT
+                androidDriver.context(Contexts.WEB_VIEW);
+
+
+                // Interact with Webview
+                WebElement navToggleBtnEle = androidDriver.findElement(By.cssSelector("button[class*='navbar__toggle']"));
+                navToggleBtnEle.click();
+
+                // Get all menu item elements
+                List<WebElement> menuItemElems = androidDriver.findElements(By.cssSelector(".menu__list li a"));
+
+                // TODO: need to check the element list is not empty before looping for verifying
+                if (menuItemElems.isEmpty()){
+                    throw new RuntimeException("The menu item is empty!!!");
+                }
+
+                List<MenuItem> currentNavItemData = new ArrayList<>();
+                for (WebElement menuItemElem : menuItemElems) {
+                    String itemText = menuItemElem.getText();
+                    if (itemText.isEmpty()){
+                        itemText = menuItemElem.getAttribute("area-label");
+                    }
+                    String itemHref = menuItemElem.getAttribute("href");
+                    System.out.printf("Text %s, href %s\n", itemText, itemHref);
+                }
+
+                // Verification
+                System.out.println(currentNavItemData);
+
+                // SWITCH back to the native context for native elements
+                androidDriver.context(Contexts.NATIVE);
+                androidDriver.findElement(AppiumBy.accessibilityId("Forms")).click();
             } else {
                 System.out.println(((IOSDriver) appiumDriver).getContextHandles());
             }
@@ -48,4 +86,30 @@ public class HandleHybridContext {
         appiumDriver.quit();
     }
 
+    // TODO: good to explore - Lombook
+    public static class MenuItemData{
+        private String name;
+        private String href;
+
+        public MenuItemData(String name, String href) {
+            this.name = name;
+            this.href = href;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getHref() {
+            return href;
+        }
+
+        @Override
+        public String toString() {
+            return "MenuItemData{" +
+                    "name='" + name + '\'' +
+                    ", href='" + href + '\'' +
+                    '}';
+        }
+    }
 }

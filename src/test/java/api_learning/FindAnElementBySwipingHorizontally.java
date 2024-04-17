@@ -11,7 +11,7 @@ import util.scrollFeatures;
 
 import java.util.List;
 
-public class FindAnElementBySwipingVertically {
+public class FindAnElementBySwipingHorizontally {
     public static void main(String[] args) {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
 
@@ -28,25 +28,25 @@ public class FindAnElementBySwipingVertically {
             int screenHeight = windowSize.getHeight();
 
             // Constructor coordinators
-            int startX = 10 * screenWidth / 100;
-            int startY = 95 * screenHeight / 100;
-            int endX = startX;
-            int endY = 10 * screenHeight / 100;
+            int startX = 70 * screenWidth / 100;
+            int startY = 70 * screenHeight / 100;
+            int endX = 30 * screenWidth / 100;
+            int endY = startY;
+
             boolean isFoundElement = false;
-            By foundEleLoc = AppiumBy.xpath("//android.widget.ScrollView[@content-desc=\"Swipe-screen\"]/android.view.ViewGroup/android.widget.TextView");
-            List<WebElement> elementList = appiumDriver.findElements(foundEleLoc);
+            By foundParentEleLoc = AppiumBy.xpath("(//android.view.ViewGroup[@content-desc=\"card\"])//android.widget.TextView");
+            List<WebElement> elementList = appiumDriver.findElements(foundParentEleLoc);
             while (!isFoundElement){
                 if (!elementList.isEmpty()){
                     for (WebElement element : elementList) {
-                        if ((element.getText()).equals("You found me!!!")){
+                        if (element.getText().equals("JS.FOUNDATION")){
                             isFoundElement = true;
                             return;
                         }
                     }
                 }
+                elementList = appiumDriver.findElements(foundParentEleLoc);
                 scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
-                elementList = appiumDriver.findElements(foundEleLoc);
-
             }
 
         } catch (Exception e) {
