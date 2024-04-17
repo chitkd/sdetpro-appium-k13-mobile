@@ -14,15 +14,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
 import util.*;
 
 public class HandleMultipleApps {
     public static void main(String[] args) {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
 
-        try{
+        try {
             // Login Action
-            //  By navLoginBtnLoc = By.xpath("//android.view.View[@content-desc='Login']");
             By navLoginBtnLoc = AppiumBy.accessibilityId("Login");
             WebElement navLoginBtnEle = appiumDriver.findElement(navLoginBtnLoc);
             navLoginBtnEle.click();
@@ -37,39 +37,44 @@ public class HandleMultipleApps {
             WebElement passwordEle = appiumDriver.findElement(passwordLoc);
             passwordEle.sendKeys("0987654321");
 
-            // Try to generate another exception
-
             // Click on Login btn
             By loginBtnLoc = AppiumBy.accessibilityId("button-LOGIN");
-            // Get dimension before swipe
-            Dimension windowSize = appiumDriver.manage().window().getSize();
-            int screenWidth = windowSize.getWidth();
-            int screenHeight = windowSize.getHeight();
-
-            // Constructor coordinators
-            int startX = 70 * screenWidth / 100;
-            int startY = 70 * screenHeight / 100;
-            int endX = 30 * screenWidth / 100;
-            int endY = startY;
-            scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
             WebElement loginBtnEle = appiumDriver.findElement(loginBtnLoc);
             loginBtnEle.click();
-            Thread.sleep(1000);
 
             // SWITCH to another app | Handle multiple apps on the same devices
             Capabilities caps = appiumDriver.getCapabilities();
             String currentPlatform = CapabilityHelpers.getCapability(caps, "platformName", String.class);
-
             if (Platform.valueOf(currentPlatform).equals(Platform.ANDROID)) {
                 AndroidDriver androidDriver = ((AndroidDriver) appiumDriver);
 
                 // put the current app under background till we call it back
-                androidDriver.runAppInBackground(Duration.ofMinutes(-1));
+                androidDriver.runAppInBackground(Duration.ofSeconds(-2));
+
+                // Switch to another app and to do something
+                //androidDriver.activateApp("com.android.settings");
+                openNotification(appiumDriver);
+
+                By internetIconLoc = AppiumBy.id("com.android.systemui:id/tile_label");
+                WebElement internetIconEle = appiumDriver.findElement(internetIconLoc);
+                internetIconEle.click();
+
+                By mobileDataStatusLoc = AppiumBy.accessibilityId("Mobile data");
+                WebElement mobileDataStatusEle = appiumDriver.findElement(mobileDataStatusLoc);
+                mobileDataStatusEle.click();
+
+                By doneBtnLoc = AppiumBy.id("com.android.systemui:id/done_button");
+                WebElement doneBtnEle = appiumDriver.findElement(doneBtnLoc);
+                doneBtnEle.click();
+                Thread.sleep(1000);
+                closeNotification(appiumDriver);
+
+                Thread.sleep(2000);
+                // Switch back to the app under test to continue the flow
+                androidDriver.activateApp("com.wdiodemoapp");
+
             }
 
-            // Switch to another app and to do something
-
-            // Switch back to the app under test to continue the flow
 
             // Wait for the dialog displayed
             By dialogMsgLoc = AppiumBy.id("android:id/message");
@@ -79,16 +84,44 @@ public class HandleMultipleApps {
             WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15));
             WebElement dialogMsgEle = wait.until(ExpectedConditions.visibilityOfElementLocated(dialogMsgLoc));
             System.out.printf("Dialog msg: %s\n", dialogMsgEle.getText());
+            Thread.sleep(2000);
             appiumDriver.findElement(dialogBtnLoc).click();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
 
-        // DEBUG PURPOSE ONLY
-        try {
+            // DEBUG PURPOSE ONLY
             Thread.sleep(1000);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void openNotification(AppiumDriver appiumDriver) {
+        // Swipe up before interacting
+        Dimension windowSize = appiumDriver.manage().window().getSize();
+        int screenWidth = windowSize.getWidth();
+        int screenHeight = windowSize.getHeight();
+
+        // Constructor coordinators
+        int startX = 50 * screenWidth / 100;
+        int startY = 0;
+        int endX = startX;
+        int endY = 50 * screenHeight / 100;
+        scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
+
+        // close the Notification
+        startY = endY;
+        endY = 0;
+    }
+
+    public static void closeNotification(AppiumDriver appiumDriver) {
+        // Swipe up before interacting
+        Dimension windowSize = appiumDriver.manage().window().getSize();
+        int screenWidth = windowSize.getWidth();
+        int screenHeight = windowSize.getHeight();
+
+        // Constructor coordinators
+        int startX = 50 * screenWidth / 100;
+        int startY = 50 * screenHeight / 100;
+        int endY = 0;
+        scrollFeatures.scrollScreen(appiumDriver, startX, startX, startY, endY);
     }
 }
