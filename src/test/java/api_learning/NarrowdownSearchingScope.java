@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.*;
+import utils.*;
 
 public class NarrowdownSearchingScope {
     public static void main(String[] args) {

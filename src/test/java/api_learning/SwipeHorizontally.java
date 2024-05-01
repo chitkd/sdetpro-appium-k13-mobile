@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import util.*;
+import utils.*;
 
 public class SwipeHorizontally {
     public static void main(String[] args) {

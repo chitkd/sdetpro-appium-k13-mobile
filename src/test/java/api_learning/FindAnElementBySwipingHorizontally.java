@@ -6,8 +6,9 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
-import util.scrollFeatures;
+import utils.scrollFeatures;
 
 import java.util.List;
 
@@ -39,6 +40,8 @@ public class FindAnElementBySwipingHorizontally {
             while (!isFoundElement){
                 if (!elementList.isEmpty()){
                     for (WebElement element : elementList) {
+                        Point cardCoordinates = element.getLocation();
+                        System.out.println(cardCoordinates.getX());
                         if (element.getText().equals("JS.FOUNDATION")){
                             isFoundElement = true;
                             return;

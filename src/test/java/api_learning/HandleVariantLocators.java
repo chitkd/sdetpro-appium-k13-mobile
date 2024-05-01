@@ -19,24 +19,19 @@ import java.util.Collections;
 import java.util.Map;
 
 public class HandleVariantLocators {
+    private static Map<Platform, By> navLoginBtnLocMap = Map.of(
+            Platform.ANDROID, AppiumBy.id("login-btn-android"),
+            Platform.IOS, AppiumBy.id("login-btn-ios")
+    );
     public static void main(String[] args) {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
 
         try{
             // Get platform info under test session
-            Capabilities caps = appiumDriver.getCapabilities();
-            String currentPlatform = CapabilityHelpers.getCapability(caps, "platformName", String.class);
-            System.out.println("Platform name is: " + currentPlatform);
-
-            // Construct the locator map
-            Map<Platform, By> loginBtnLocMap = Map.of(
-                    Platform.ANDROID, AppiumBy.id("login-btn-android"),
-                    Platform.IOS, AppiumBy.id("login-btn-ios")
-            );
-
+            String currentPlatform = getCurrentPlatform(appiumDriver);
 
             // Get locator based on current platform
-            System.out.println(loginBtnLocMap.get(Platform.valueOf(currentPlatform)));
+            By loginLocator = getLocator(navLoginBtnLocMap, currentPlatform);
 
             Thread.sleep(300);
         } catch (Exception e){
@@ -44,5 +39,14 @@ public class HandleVariantLocators {
         }
 
         appiumDriver.quit();
+    }
+
+    private static String getCurrentPlatform(AppiumDriver appiumDriver){
+        Capabilities caps = appiumDriver.getCapabilities();
+        return CapabilityHelpers.getCapability(caps, "platformName", String.class);
+    }
+
+    private static By getLocator(Map<Platform, By> locatorMap, String platformName){
+        return locatorMap.get(Platform.valueOf(platformName));
     }
 }
