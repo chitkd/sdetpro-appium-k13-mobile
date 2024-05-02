@@ -23,6 +23,6 @@ public class LoginPageTest02 {
         } catch (Exception e){
             e.printStackTrace();
         }
-        appiumDriver.quit();
+     //   appiumDriver.quit();
     }
 }
