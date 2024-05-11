@@ -17,6 +17,10 @@ public class ElementHandler {
         this.appiumDriver = appiumDriver;
     }
 
+//    public By getElementLocatorFrom(Map<Platform, By> ){
+//
+//    }
+
     public WebElement findElement (Map<Platform, By> locatorMap){
         By elementLocator = locatorMap.get(Platform.valueOf(getCurrentPlatform()));
         return this.appiumDriver.findElement(elementLocator);

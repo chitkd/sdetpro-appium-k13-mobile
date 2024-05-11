@@ -12,15 +12,18 @@ public class LoginPageTest01 {
     public static void main(String[] args) {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
         try {
+            // Navigate to the Login screen
             By navLoginBtnLoc = AppiumBy.accessibilityId("Login");
             WebElement navLoginBtnEle = appiumDriver.findElement(navLoginBtnLoc);
             navLoginBtnEle.click();
+
             LoginPage01 loginPage = new LoginPage01(appiumDriver);
-            loginPage.username().sendKeys("cindydinh@sth.com");
+            loginPage.username().sendKeys("cindydinh01@sth.com");
             loginPage.password().sendKeys("9876543210");
             loginPage.loginBtn().click();
         } catch (Exception e){
             e.printStackTrace();
         }
+        appiumDriver.quit();
     }
 }

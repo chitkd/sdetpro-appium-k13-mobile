@@ -16,8 +16,9 @@ public class LoginPageTest02 {
             By navLoginBtnLoc = AppiumBy.accessibilityId("Login");
             WebElement navLoginBtnEle = appiumDriver.findElement(navLoginBtnLoc);
             navLoginBtnEle.click();
+
             LoginPage02 loginPage = new LoginPage02(appiumDriver);
-            loginPage.inputUsername("cindydinh@sth.com");
+            loginPage.inputUsername("cindydinh02@sth.com");
             loginPage.inputPassword("9876543210");
             loginPage.clickLoginBtn();
         } catch (Exception e){

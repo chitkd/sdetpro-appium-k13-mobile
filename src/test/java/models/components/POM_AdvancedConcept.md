@@ -1,0 +1,3 @@
+- Narrow down searching scope
+- Annotation
+- Generic type
