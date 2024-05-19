@@ -36,7 +36,7 @@ public class Component {
         return component.findElements(by);
     }
 
-    public <T extends Component> T finComponent(Class<T> componentClass){
+    public <T extends Component> T findComponent(Class<T> componentClass){
         return findComponents(componentClass).get(0);
     }
 

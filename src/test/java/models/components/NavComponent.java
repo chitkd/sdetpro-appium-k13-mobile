@@ -3,19 +3,20 @@ package models.components;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Platform;
+import driver.Platform;
 import org.openqa.selenium.WebElement;
+import utils.ElementHandler;
 
 import java.util.Map;
 
 public class NavComponent extends Component{
     private final AppiumDriver appiumDriver;
-    private final static By homeIconSel = AppiumBy.accessibilityId("");
-    private final static By webviewIconSel = AppiumBy.accessibilityId("");
+    private final static By homeIconSel = AppiumBy.accessibilityId("abc");
+    private final static By webviewIconSel = AppiumBy.accessibilityId("c");
     private final static By loginIconSel = AppiumBy.accessibilityId("Login");
-    private final static By formsIconSel = AppiumBy.accessibilityId("");
-    private final static By swipeIconSel = AppiumBy.accessibilityId("");
-    private final static By dragIconSel = AppiumBy.accessibilityId("");
+    private final static By formsIconSel = AppiumBy.accessibilityId("ac");
+    private final static By swipeIconSel = AppiumBy.accessibilityId("sfs");
+    private final static By dragIconSel = AppiumBy.accessibilityId("acs");
 
     private static Map<Platform, By> navloginBtnLocMap = Map.of(
             Platform.ANDROID, AppiumBy.accessibilityId("Login"),
@@ -30,6 +31,7 @@ public class NavComponent extends Component{
         this.appiumDriver.findElement(loginIconSel).click();
 
         // TODO: Make sure we are on the Login screen. Implement below...
-        // By targetScreen...
+        By targetScreenEleLocator = new ElementHandler(appiumDriver).getElementLocatorFrom(navloginBtnLocMap);
+
     }
 }

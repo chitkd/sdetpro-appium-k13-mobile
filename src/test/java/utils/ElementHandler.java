@@ -17,14 +17,15 @@ public class ElementHandler {
         this.appiumDriver = appiumDriver;
     }
 
-//    public By getElementLocatorFrom(Map<Platform, By> ){
-//
-//    }
+    public By getElementLocatorFrom(Map<Platform, By> locatorMap) {
+        return locatorMap.get(Platform.valueOf(getCurrentPlatform()));
+    }
 
     public WebElement findElement (Map<Platform, By> locatorMap){
         By elementLocator = locatorMap.get(Platform.valueOf(getCurrentPlatform()));
         return this.appiumDriver.findElement(elementLocator);
     }
+
     public List<WebElement> findElements (Map<Platform, By> locatorMap){
         By elementLocator = locatorMap.get(Platform.valueOf(getCurrentPlatform()));
         return this.appiumDriver.findElements(elementLocator);
@@ -34,5 +35,4 @@ public class ElementHandler {
         Capabilities caps = this.appiumDriver.getCapabilities();
         return CapabilityHelpers.getCapability(caps, "platformName", String.class);
     }
-
 }
