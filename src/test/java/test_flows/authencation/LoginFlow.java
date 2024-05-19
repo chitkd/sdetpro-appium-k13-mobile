@@ -7,7 +7,6 @@ import org.apache.commons.validator.routines.EmailValidator;
 import test_flows.BaseFlow;
 
 public class LoginFlow extends BaseFlow {
-    private AppiumDriver appiumDriver;
     private String username;
     private String password;
 

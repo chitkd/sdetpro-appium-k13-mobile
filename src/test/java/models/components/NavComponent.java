@@ -9,6 +9,7 @@ import utils.ElementHandler;
 
 import java.util.Map;
 
+@ComponentXpathSelector(value = "//android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View")
 public class NavComponent extends Component{
     private final AppiumDriver appiumDriver;
     private final static By homeIconSel = AppiumBy.accessibilityId("abc");
