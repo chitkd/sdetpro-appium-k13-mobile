@@ -14,7 +14,7 @@ public class LoginTest {
 
         List<LoginCredData> loginCredDataList = new ArrayList<>();
         loginCredDataList.add(new LoginCredData("cindy@", "87654321"));
-        loginCredDataList.add(new LoginCredData("cindy@sth.com.vn", "1234567"));
+        loginCredDataList.add(new LoginCredData("cindy@sth.com", "1234567"));
         loginCredDataList.add(new LoginCredData("cindy@sth.com.vn", "123456789"));
 
         for (LoginCredData loginCred : loginCredDataList) {
