@@ -56,9 +56,15 @@ public class LoginFlow extends BaseFlow {
         }
     }
 
+    // TODO: Implement this } reuse the dialog in the prev lessons
     private void verifyCorrectLoginCreds() {
+        String expectedSuccessLoginStr = "You are logged in!";
+        LoginPage loginPage = new LoginPage(appiumDriver);
+        String actualSuccessLoginStr = loginPage.getSuccessLoginStr();
 
-
+        if (!actualSuccessLoginStr.equalsIgnoreCase(expectedSuccessLoginStr)){
+            throw new RuntimeException("[ERR] Success Login string incorrect!");
+        }
     }
 
     private void verifyIncorrectEmailLogin() {

@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
     private final static By usernameSel = AppiumBy.accessibilityId("input-email");
@@ -11,6 +12,9 @@ public class LoginPage extends BasePage{
     private final static By loginBtnSel = AppiumBy.accessibilityId("button-LOGIN");
     private final static By invalidEmailTxtSel = AppiumBy.xpath("//*[contains(@text, 'valid email')]");
     private final static By invalidPasswordTxtSel = AppiumBy.xpath("//*[contains(@text, 'at least 8 characters')]");
+
+    // By dialogBtnLoc = AppiumBy.id("android:id/button1");
+    private final static By successLoginTxtSel = AppiumBy.id("android:id/message");
 
     public LoginPage(AppiumDriver appiumDriver) {
         super(appiumDriver);
@@ -34,5 +38,9 @@ public class LoginPage extends BasePage{
 
     public String getInvalidPasswordStr(){
         return component.findElement(invalidPasswordTxtSel).getText();
+    }
+
+    public String getSuccessLoginStr(){
+        return (wait.until(ExpectedConditions.visibilityOfElementLocated(successLoginTxtSel))).getText();
     }
 }
