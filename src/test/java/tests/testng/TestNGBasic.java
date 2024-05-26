@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 public class TestNGBasic {
     @Test
     public void openApp(){
-        System.out.println("Open app");
-//        AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
-//        appiumDriver.quit();
+        //System.out.println("Open app");
+        AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
+        appiumDriver.quit();
     }
 }

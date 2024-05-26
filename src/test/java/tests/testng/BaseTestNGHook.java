@@ -15,31 +15,31 @@ public class BaseTestNGHook {
 
     @BeforeTest
     public void beforeTest(){
-        System.out.println("<!--BeforeTest Hook-->");
+        System.out.println("\t<!--BeforeTest Hook-->");
     }
 
     @AfterTest
     public void afterSTest(){
-        System.out.println("<!--AfterTest Hook-->");
+        System.out.println("\t<!--AfterTest Hook-->");
     }
 
     @BeforeClass
     public void beforeClass(){
-        System.out.println("<!--BeforeClass Hook-->");
+        System.out.println("\t\t<!--BeforeClass Hook-->");
     }
 
     @AfterClass
     public void afterClass(){
-        System.out.println("<!--AfterClass Hook-->");
+        System.out.println("\t\t<!--AfterClass Hook-->");
     }
 
     @BeforeMethod
     public void beforeMethod(){
-        System.out.println("<!--BeforeMethod Hook-->");
+        System.out.println("\t\t\t<!--BeforeMethod Hook-->");
     }
 
     @AfterMethod
     public void afterMethod(){
-        System.out.println("<!--AfterMethod Hook-->");
+        System.out.println("\t\t\t<!--AfterMethod Hook-->");
     }
 }
