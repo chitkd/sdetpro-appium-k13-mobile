@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class DataObjectBuilder {
     public static <T> T buildDataObject(String relativeFilePath, Class<T> dataType){
@@ -32,7 +33,9 @@ public class DataObjectBuilder {
     public static void main(String[] args) {
         String invalidPath = "src/test/java/test_data/authen/LoginCredData.json";
         String validPath = "/src/test/java/test_data/authen/LoginCredData.json";
+
         LoginCred[] loginCreds = DataObjectBuilder.buildDataObject(validPath, LoginCred[].class);
-        System.out.println(loginCreds.toString());
+        //LoginCred loginCreds = DataObjectBuilder.buildDataObject(invalidPath, LoginCred.class);
+        System.out.println(Arrays.toString(loginCreds));
     }
 }

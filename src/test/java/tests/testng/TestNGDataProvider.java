@@ -5,12 +5,12 @@ import org.testng.annotations.Test;
 
 public class TestNGDataProvider {
 
-    @Test(dataProvider = "t")
-    public void test(){
-
+    @Test(dataProvider = "chi")
+    public void test(String value){
+        System.out.println(value);
     }
 
-    @DataProvider(name="t")
+    @DataProvider(name = "chi")
     public String[] testData(){
         return new String[]{"value1", "value2"};
     }

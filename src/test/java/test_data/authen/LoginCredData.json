@@ -1,9 +1,13 @@
 [{
-  "email" : "cindy@",
+  "username" : "chi@",
   "password" : "87654321"
 },
   {
-    "email" : "cindy@th",
+    "username" : "chi@th.co",
     "password" : "876543"
+  },
+  {
+    "username" : "chi@th.co",
+    "password" : "87654321"
   }
 ]

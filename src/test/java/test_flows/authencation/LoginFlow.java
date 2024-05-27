@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import models.pages.BasePage;
 import models.pages.LoginPage;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.testng.Assert;
 import test_flows.BaseFlow;
 
 public class LoginFlow extends BaseFlow {
@@ -60,11 +61,14 @@ public class LoginFlow extends BaseFlow {
     private void verifyCorrectLoginCreds() {
         String expectedSuccessLoginStr = "You are logged in!";
         LoginPage loginPage = new LoginPage(appiumDriver);
-        String actualSuccessLoginStr = loginPage.getSuccessLoginStr();
+        String actualSuccessLoginStr = loginPage.loginDialog().getDialogMsg();
 
-        if (!actualSuccessLoginStr.equalsIgnoreCase(expectedSuccessLoginStr)){
-            throw new RuntimeException("[ERR] Success Login string incorrect!");
-        }
+        Assert.assertEquals(actualSuccessLoginStr, expectedSuccessLoginStr, "[ERR] Success Login string incorrect!");
+//        if (!actualSuccessLoginStr.equalsIgnoreCase(expectedSuccessLoginStr)){
+//            throw new RuntimeException("[ERR] Success Login string incorrect!");
+//        }
+
+        loginPage.loginDialog().okBtn().click();
     }
 
     private void verifyIncorrectEmailLogin() {

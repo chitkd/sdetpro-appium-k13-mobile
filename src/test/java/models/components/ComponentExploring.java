@@ -1,5 +1,9 @@
 package models.components;
 
+import models.components.exploredpages.ExternalLoginPage;
+import models.components.exploredpages.InternalLoginPage;
+import models.components.exploredpages.LoginPage;
+
 import java.lang.reflect.Constructor;
 
 public class ComponentExploring {

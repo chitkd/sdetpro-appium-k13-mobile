@@ -1,7 +1,9 @@
-package models.components;
+package models.components.global;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import models.components.Component;
+import models.components.ComponentXpathSelector;
 import org.openqa.selenium.By;
 import driver.Platform;
 import org.openqa.selenium.WebElement;
@@ -10,7 +12,7 @@ import utils.ElementHandler;
 import java.util.Map;
 
 @ComponentXpathSelector(value = "//android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View")
-public class NavComponent extends Component{
+public class NavComponent extends Component {
     private final AppiumDriver appiumDriver;
     private final static By homeIconSel = AppiumBy.accessibilityId("abc");
     private final static By webviewIconSel = AppiumBy.accessibilityId("c");

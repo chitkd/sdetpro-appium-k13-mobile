@@ -6,7 +6,7 @@ import test_data.models.LoginCred;
 public class GsonExplore {
     public static void main(String[] args) {
         String jsonObject = "{\n" +
-                "  \"email1\" : \"cindy@\",\n" +
+                "  \"username\" : \"cindy@\",\n" +
                 "  \"password\" : \"87654321\"\n" +
                 "}";
 

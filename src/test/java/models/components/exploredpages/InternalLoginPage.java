@@ -1,4 +1,4 @@
-package models.components;
+package models.components.exploredpages;
 
 public class InternalLoginPage extends LoginPage{
     @Override
