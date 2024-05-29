@@ -11,8 +11,9 @@ public class BaseTest {
     protected static AppiumDriver appiumDriver;
 
     @BeforeTest
-    public void initAppiumDriverSession(){
-        appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
+    @Parameters({"systemPort", "udid"})
+    public void initAppiumDriverSession(String systemPort, String udid){
+        appiumDriver = DriverFactory.getDriver(Platform.ANDROID, systemPort, udid);
     }
 
     @AfterTest(alwaysRun = true)

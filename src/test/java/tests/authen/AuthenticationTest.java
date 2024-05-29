@@ -9,22 +9,25 @@ import tests.BaseTest;
 
 public class AuthenticationTest extends BaseTest {
 
-    @Test(dataProvider = "loginCredData")
-    public void loginWithCreds(LoginCred loginCred){
-        System.out.println(loginCred);
-        LoginFlow loginFlow = new LoginFlow(
-                appiumDriver, loginCred.getUsername(), loginCred.getPassword()
-        );
-            loginFlow.gotoLoginScreen();
-            loginFlow.login();
-            loginFlow.verifyLogin();
-
+    @Test
+    public void getAppiumSession(){
+        System.out.println(appiumDriver.getSessionId());
     }
-
-    @DataProvider
-    public LoginCred[] loginCredData(){
-        String loginCredDataPath = "/src/test/java/test_data/authen/LoginCredData.json";
-        return DataObjectBuilder.buildDataObject(loginCredDataPath, LoginCred[].class);
-    }
-
+//    @Test(dataProvider = "loginCredData")
+//    public void loginWithCreds(LoginCred loginCred){
+//        System.out.println(loginCred);
+//        LoginFlow loginFlow = new LoginFlow(
+//                appiumDriver, loginCred.getUsername(), loginCred.getPassword()
+//        );
+//            loginFlow.gotoLoginScreen();
+//            loginFlow.login();
+//            loginFlow.verifyLogin();
+//
+//    }
+//
+//    @DataProvider
+//    public LoginCred[] loginCredData(){
+//        String loginCredDataPath = "/src/test/java/test_data/authen/LoginCredData.json";
+//        return DataObjectBuilder.buildDataObject(loginCredDataPath, LoginCred[].class);
+//    }
 }

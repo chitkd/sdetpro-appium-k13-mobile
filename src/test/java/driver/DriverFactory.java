@@ -48,14 +48,14 @@ public class DriverFactory {
 
         return appiumDriver;
     }
-    public static AppiumDriver getDriver(Platform platform, String systemPort, String udid){
+    public static AppiumDriver getDriver(Platform platform, String systemPort, String uuid){
         AppiumDriver appiumDriver = null;
         // DesiredCaps
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
-        desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, "emulator-5554");
-        //desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, "R5CR807N3CY");
+        desiredCapabilities.setCapability(MobileCapabilityType.SYSTEM_PORT, systemPort);
+        desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, uuid);
         desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
         desiredCapabilities.setCapability(MobileCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
         URL appiumServer = null;
@@ -82,9 +82,7 @@ public class DriverFactory {
 
         // Need one more thing here that we will talk in next lesson
         // global wait time applied for the WHOLE driver session - Implicit wait
-
         appiumDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2L));
-
         return appiumDriver;
     }
 }
