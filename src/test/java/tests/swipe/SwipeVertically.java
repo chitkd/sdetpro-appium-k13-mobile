@@ -11,42 +11,38 @@ import tests.BaseTest;
 import utils.scrollFeatures;
 
 import java.time.Duration;
+import java.util.GregorianCalendar;
 
-public class SwipeVertically extends BaseTest {
+public class SwipeVertically extends BaseTest{
     @Test
-    public void getAppiumSession(){
-        System.out.println(appiumDriver.getSessionId());
-    }
+    public void swipeVertically() {
+        By formBtnLoc = AppiumBy.accessibilityId("Forms");
+        By activeBtnLoc = AppiumBy.accessibilityId("button-Active");
 
-//    @Test
-//    public void swipeVertically() {
-//        By formBtnLoc = AppiumBy.accessibilityId("Forms");
-//        By activeBtnLoc = AppiumBy.accessibilityId("button-Active");
-//
-//        // Navigate to [Forms] screen
-//        appiumDriver.findElement(formBtnLoc).click();
-//
-//        // Make sure that We are on the target screen before swiping up/down/left/right/any direction
-//        WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15L));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Form components\")")));
-//
-//        // Check to see the active button displayed
-//        boolean isActiveBtnDisplay = false;
-//
-//        // Swipe up before interacting
-//        Dimension windowSize = appiumDriver.manage().window().getSize();
-//        int screenWidth = windowSize.getWidth();
-//        int screenHeight = windowSize.getHeight();
-//
-//        // Constructor coordinators
-//        int startX = screenWidth / 2;
-//        int startY = screenHeight / 2;
-//        int endX = startX;
-//        int endY = 10 * screenHeight / 100;
-//
-//        scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
-//
-//        // Interact with one element on the screen
-//        appiumDriver.findElement(activeBtnLoc).click();
-//    }
+        // Navigate to [Forms] screen
+        appiumDriver.findElement(formBtnLoc).click();
+
+        // Make sure that We are on the target screen before swiping up/down/left/right/any direction
+        WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15L));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Form components\")")));
+
+        // Check to see the active button displayed
+        boolean isActiveBtnDisplay = false;
+
+        // Swipe up before interacting
+        Dimension windowSize = appiumDriver.manage().window().getSize();
+        int screenWidth = windowSize.getWidth();
+        int screenHeight = windowSize.getHeight();
+
+        // Constructor coordinators
+        int startX = screenWidth / 2;
+        int startY = screenHeight / 2;
+        int endX = startX;
+        int endY = 20 * screenHeight / 100;
+
+        scrollFeatures.scrollScreen(appiumDriver, startX, endX, startY, endY);
+
+        // Interact with one element on the screen
+        appiumDriver.findElement(activeBtnLoc).click();
+    }
 }
