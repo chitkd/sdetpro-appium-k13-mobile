@@ -8,8 +8,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 public class BaseTest {
-    protected static AppiumDriver appiumDriver;
+    protected AppiumDriver appiumDriver;
 
+    // TODO: This is not final solution for parallel
     @BeforeTest
     @Parameters({"systemPort", "udid"})
     public void initAppiumDriverSession(String systemPort, String udid){
@@ -18,6 +19,8 @@ public class BaseTest {
 
     @AfterTest(alwaysRun = true)
     public void quitAppiumDriverSession(){
-        appiumDriver.quit();
+        if (appiumDriver != null){
+            appiumDriver.quit();
+        }
     }
 }

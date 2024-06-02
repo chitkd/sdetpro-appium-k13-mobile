@@ -14,8 +14,6 @@ public class ParameterTest01 {
         try{
             Thread.sleep(1000);
         } catch (Exception ignored){
-
         }
-
     }
 }

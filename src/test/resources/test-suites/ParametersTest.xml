@@ -10,7 +10,7 @@
     </test>
     <test name="Group 02">
         <parameter name="systemPort" value="8400"/>
-        <parameter name="udid" value="real"/>
+        <parameter name="udid" value="R5CT63E03CB"/>
         <classes>
             <class name="tests.explore.parameters.ParameterTest02"/>
         </classes>

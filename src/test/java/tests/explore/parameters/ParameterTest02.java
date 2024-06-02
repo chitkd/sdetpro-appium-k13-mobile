@@ -7,14 +7,14 @@ import java.util.GregorianCalendar;
 
 public class ParameterTest02 {
     @Test
-    @Parameters({"systemPort", "uuid"})
-    public void getParams(String systemPort, String uuid){
+    @Parameters({"uuid", "systemPort"})
+    public void getParams(String teo, String ti){
         try{
             Thread.sleep(2000);
         } catch (Exception ignored){
 
         }
         System.out.println(new GregorianCalendar().getTime());
-        System.out.printf("systemPort: %s | udid: %s", systemPort, uuid);
+        System.out.printf("systemPort: %s | udid: %s", teo, ti);
     }
 }

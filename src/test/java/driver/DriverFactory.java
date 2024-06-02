@@ -79,7 +79,6 @@ public class DriverFactory {
                 break;
         }
 
-
         // Need one more thing here that we will talk in next lesson
         // global wait time applied for the WHOLE driver session - Implicit wait
         appiumDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2L));

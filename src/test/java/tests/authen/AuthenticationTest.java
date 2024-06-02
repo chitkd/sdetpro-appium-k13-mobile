@@ -13,7 +13,7 @@ public class AuthenticationTest extends BaseTest{
 
     @Test(dataProvider = "loginCredData")
     public void loginWithCreds(LoginCred loginCred){
-        System.out.println(loginCred);
+        //System.out.println(loginCred);
         LoginFlow loginFlow = new LoginFlow(
                 appiumDriver, loginCred.getUsername(), loginCred.getPassword()
         );
