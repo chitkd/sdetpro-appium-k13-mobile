@@ -1,15 +1,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Parallel Test Approach 01" parallel="tests" thread-count="10">
-    <test name="Group 01">
-        <parameter name="systemPort" value="8500"/>
-        <parameter name="udid" value="R5CT63E03CB"/>
-        <parameter name="group" value="Group 01"/>
-        <classes>
-<!--            <class name="tests.swipe.SwipeVertically"/>-->
-            <class name="tests.authen.AuthenticationTest"/>
-        </classes>
-    </test>
+<!--    <test name="Group 01">-->
+<!--        <parameter name="systemPort" value="8500"/>-->
+<!--        <parameter name="udid" value="R5CT63E03CB"/>-->
+<!--        <parameter name="group" value="Group 01"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="tests.swipe.SwipeVertically"/>&ndash;&gt;-->
+<!--            <class name="tests.authen.AuthenticationTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="Group 02">
         <parameter name="systemPort" value="8400"/>

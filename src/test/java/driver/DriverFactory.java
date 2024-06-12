@@ -9,6 +9,7 @@ import java.net.URL;
 import java.time.Duration;
 
 public class DriverFactory {
+    private AppiumDriver appiumDriver;
     public static AppiumDriver getDriver(Platform platform){
         AppiumDriver appiumDriver = null;
         // DesiredCaps
@@ -48,40 +49,48 @@ public class DriverFactory {
 
         return appiumDriver;
     }
-    public static AppiumDriver getDriver(Platform platform, String systemPort, String uuid){
-        AppiumDriver appiumDriver = null;
-        // DesiredCaps
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
-        desiredCapabilities.setCapability(MobileCapabilityType.SYSTEM_PORT, systemPort);
-        desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, uuid);
-        desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
-        URL appiumServer = null;
+    public AppiumDriver getDriver(Platform platform, String systemPort, String uuid){
+       if (appiumDriver == null){
+           // DesiredCaps
+           DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+           desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+           desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
+           desiredCapabilities.setCapability(MobileCapabilityType.SYSTEM_PORT, systemPort);
+           desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, uuid);
+           desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
+           desiredCapabilities.setCapability(MobileCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
+           URL appiumServer = null;
 
-        try{
-            appiumServer = new URL("http://localhost:4723");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+           try{
+               appiumServer = new URL("http://localhost:4723");
+           } catch (Exception e){
+               e.printStackTrace();
+           }
 
-        if (appiumServer == null){
-            throw new RuntimeException("Can't construct the appium server URL");
-        }
+           if (appiumServer == null){
+               throw new RuntimeException("Can't construct the appium server URL");
+           }
 
-        switch (platform){
-            case ANDROID:
-                appiumDriver = new AndroidDriver(appiumServer, desiredCapabilities);
-                break;
-            case IOS:
-                appiumDriver = new IOSDriver(appiumServer, desiredCapabilities);
-                break;
-        }
+           switch (platform){
+               case ANDROID:
+                   appiumDriver = new AndroidDriver(appiumServer, desiredCapabilities);
+                   break;
+               case IOS:
+                   appiumDriver = new IOSDriver(appiumServer, desiredCapabilities);
+                   break;
+           }
 
-        // Need one more thing here that we will talk in next lesson
-        // global wait time applied for the WHOLE driver session - Implicit wait
-        appiumDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2L));
+           // Need one more thing here that we will talk in next lesson
+           // global wait time applied for the WHOLE driver session - Implicit wait
+           appiumDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2L));
+       }
         return appiumDriver;
+    }
+
+    public void quitAppiumSession(){
+        if (appiumDriver != null){
+            appiumDriver.quit();
+            appiumDriver = null;
+        }
     }
 }
