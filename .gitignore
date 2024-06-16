@@ -39,3 +39,9 @@ build/
 
 ### Test results
 allure-*
+
+### screenshots
+screenshots/
+
+###.idea
+.idea/
