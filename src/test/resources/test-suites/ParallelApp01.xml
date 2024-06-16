@@ -14,10 +14,21 @@
     <test name="Group 02">
         <parameter name="systemPort" value="8400"/>
         <parameter name="udid" value="emulator-5554"/>
-        <parameter name="group" value="Group 02"/>
+        <parameter name="platformName" value="ANDROID"/>
         <classes>
             <class name="tests.swipe.SwipeVertically"/>
-<!--            <class name="tests.authen.AuthenticationTest"/>-->
+            <class name="tests.authen.AuthenticationTest"/>
+        </classes>
+    </test>
+
+    <test name="IOS">
+        <parameter name="systemPort" value="8500"/>
+        <parameter name="udid" value="iPhone 14"/>
+        <parameter name="platformName" value="IOS"/>
+        <parameter name="platformVersion" value="16.4"/>
+        <classes>
+            <class name="tests.swipe.SwipeVertically"/>
+            <class name="tests.authen.AuthenticationTest"/>
         </classes>
     </test>
 </suite>

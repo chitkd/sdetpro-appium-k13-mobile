@@ -4,7 +4,6 @@ import driver.DriverFactory;
 import driver.Platform;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import models.pages.LoginPage01;
 import models.pages.LoginPage02;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

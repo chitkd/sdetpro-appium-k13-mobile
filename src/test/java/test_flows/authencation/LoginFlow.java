@@ -1,7 +1,6 @@
 package test_flows.authencation;
 
 import io.appium.java_client.AppiumDriver;
-import models.pages.BasePage;
 import models.pages.LoginPage;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.testng.Assert;
@@ -29,13 +28,13 @@ public class LoginFlow extends BaseFlow {
         LoginPage loginPage = new LoginPage(appiumDriver);
         if (!username.isEmpty()){
             loginPage.username().clear();
-            loginPage.username().sendKeys(username);
+            loginPage.inputUsername(username);
         }
         if (!password.isEmpty()){
             loginPage.password().clear();
-            loginPage.password().sendKeys(password);
+            loginPage.inputPassword(password);
         }
-        loginPage.loginBtn().click();
+        loginPage.clickOnLoginButton();
     }
 
 
@@ -59,7 +58,8 @@ public class LoginFlow extends BaseFlow {
 
     // TODO: Implement this } reuse the dialog in the prev lessons
     private void verifyCorrectLoginCreds() {
-        String expectedSuccessLoginStr = "You are logged in!";
+        String expectedSuccessLoginStr = "You are logged in";
+        //String expectedSuccessLoginStr = "You are logged in!";
         LoginPage loginPage = new LoginPage(appiumDriver);
         String actualSuccessLoginStr = loginPage.loginDialog().getDialogMsg();
 

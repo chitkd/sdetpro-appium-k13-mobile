@@ -1,11 +1,11 @@
 package utils;
 
+import driver.Platform;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.internal.CapabilityHelpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebElement;
-import driver.Platform;
 
 import java.util.List;
 import java.util.Map;

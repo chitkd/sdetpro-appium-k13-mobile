@@ -2,12 +2,8 @@ package api_learning;
 
 import driver.DriverFactory;
 import driver.Platform;
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import models.pages.LoginPage02;
 import models.pages.LoginPage03;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class LoginPageTest03 {
     public static void main(String[] args) {

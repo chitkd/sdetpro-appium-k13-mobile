@@ -3,6 +3,7 @@ package driver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
@@ -14,12 +15,12 @@ public class DriverFactory {
         AppiumDriver appiumDriver = null;
         // DesiredCaps
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
-        desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, "emulator-5554");
+        desiredCapabilities.setCapability(AndroidCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(AndroidCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
+        desiredCapabilities.setCapability(AndroidCapabilityType.UDID_OPTION, "emulator-5554");
         //desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, "R5CR807N3CY");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
+        desiredCapabilities.setCapability(AndroidCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
+        desiredCapabilities.setCapability(AndroidCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
         URL appiumServer = null;
 
         try{
@@ -49,16 +50,8 @@ public class DriverFactory {
 
         return appiumDriver;
     }
-    public AppiumDriver getDriver(Platform platform, String systemPort, String uuid){
+    public AppiumDriver getDriver(Platform platform, String systemPort, String uuid, String platformVersion){
        if (appiumDriver == null){
-           // DesiredCaps
-           DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-           desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-           desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
-           desiredCapabilities.setCapability(MobileCapabilityType.SYSTEM_PORT, systemPort);
-           desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, uuid);
-           desiredCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
-           desiredCapabilities.setCapability(MobileCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
            URL appiumServer = null;
 
            try{
@@ -71,11 +64,28 @@ public class DriverFactory {
                throw new RuntimeException("Can't construct the appium server URL");
            }
 
+           DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
            switch (platform){
                case ANDROID:
+                   desiredCapabilities = new DesiredCapabilities();
+                   desiredCapabilities.setCapability(AndroidCapabilityType.PLATFORM_NAME, "Android");
+                   desiredCapabilities.setCapability(AndroidCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
+                   desiredCapabilities.setCapability(AndroidCapabilityType.SYSTEM_PORT, systemPort);
+                   desiredCapabilities.setCapability(AndroidCapabilityType.UDID_OPTION, uuid);
+                   desiredCapabilities.setCapability(AndroidCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
+                   desiredCapabilities.setCapability(AndroidCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
                    appiumDriver = new AndroidDriver(appiumServer, desiredCapabilities);
                    break;
                case IOS:
+                   desiredCapabilities = new DesiredCapabilities();
+                   desiredCapabilities.setCapability(IOSCapabilityType.AUTOMATION_NAME_OPTION, "XCUITest");
+                   desiredCapabilities.setCapability(IOSCapabilityType.UDID_OPTION, uuid);
+                   desiredCapabilities.setCapability(IOSCapabilityType.PLATFORM_VERSION_OPTION, platformVersion);
+                   desiredCapabilities.setCapability(IOSCapabilityType.SYSTEM_PORT, systemPort);
+                   desiredCapabilities.setCapability(IOSCapabilityType.BUNDLE_ID, "com.wdiodemoapp");
+                   desiredCapabilities.setCapability(XCUITestOptions.WDA_LOCAL_PORT_OPTION, "com.wdiodemoapp");
+                   desiredCapabilities.setCapability(IOSCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
                    appiumDriver = new IOSDriver(appiumServer, desiredCapabilities);
                    break;
            }

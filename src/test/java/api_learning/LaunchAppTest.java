@@ -3,7 +3,6 @@ package api_learning;
 import driver.DriverFactory;
 import driver.Platform;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class LaunchAppTest {
     public static void main(String[] args) {

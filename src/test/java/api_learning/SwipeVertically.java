@@ -8,10 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.scrollFeatures;
 
 import java.time.Duration;
-
-import utils.scrollFeatures;
 
 public class SwipeVertically {
     public static void main(String[] args) {

@@ -12,10 +12,9 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.scrollFeatures;
 
 import java.time.Duration;
-
-import utils.*;
 
 public class HandleMultipleApps {
     public static void main(String[] args) {

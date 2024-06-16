@@ -9,10 +9,9 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.scrollFeatures;
 
 import java.time.Duration;
-
-import utils.*;
 
 public class SwipeHorizontally {
     public static void main(String[] args) {

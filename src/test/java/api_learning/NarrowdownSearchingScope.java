@@ -9,12 +9,11 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.scrollFeatures;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import utils.*;
 
 public class NarrowdownSearchingScope {
     public static void main(String[] args) {

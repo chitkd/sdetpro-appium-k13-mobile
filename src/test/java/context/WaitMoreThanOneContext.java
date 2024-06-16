@@ -8,7 +8,6 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class WaitMoreThanOneContext implements ExpectedCondition<Boolean> {
     private final AppiumDriver appiumDriver;

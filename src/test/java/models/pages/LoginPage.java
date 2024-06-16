@@ -2,10 +2,10 @@ package models.pages;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import models.components.login.LoginDialog;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
     private final static By usernameSel = AppiumBy.accessibilityId("input-email");
@@ -22,12 +22,26 @@ public class LoginPage extends BasePage{
         return component.findElement(usernameSel);
     }
 
+    @Step("Input username as {username}")
+    public void inputUsername(String username){
+        username().sendKeys(username);
+    }
+
+
     public WebElement password(){
         return component.findElement(passwordSel);
     }
-
+    @Step("Input password as {password}")
+    public void inputPassword(String password){
+        username().sendKeys(password);
+    }
     public WebElement loginBtn(){
         return component.findElement(loginBtnSel);
+    }
+
+    @Step("Click on Login button")
+    public void clickOnLoginButton(){
+        loginBtn().click();
     }
     public String getInvalidEmailStr(){
         return component.findElement(invalidEmailTxtSel).getText();

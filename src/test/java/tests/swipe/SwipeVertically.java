@@ -46,6 +46,6 @@ public class SwipeVertically extends BaseTest{
 
         // Interact with one element on the screen
         appiumDriver.findElement(activeBtnLoc).click();
-        //appiumDriver.findElement(dialogOKBtnLoc).click();
+        appiumDriver.findElement(dialogOKBtnLoc).click();
     }
 }
