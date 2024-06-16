@@ -40,5 +40,8 @@ build/
 ### Test results
 allure-*
 
-### Screenshot folder
-screenshots
+### screenshots
+screenshots/
+
+###.idea
+.idea/

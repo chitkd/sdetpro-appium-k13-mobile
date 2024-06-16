@@ -72,7 +72,7 @@ public class LoginFlow extends BaseFlow {
     }
 
     private void verifyIncorrectEmailLogin() {
-        String expectedInvalidEmailStr = "Please enter a valid email address";
+        String expectedInvalidEmailStr = "Please enter a valid email address.";
         LoginPage loginPage = new LoginPage(appiumDriver);
         String actualInvalidEmailStr = loginPage.getInvalidEmailStr();
 

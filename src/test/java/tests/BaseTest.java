@@ -74,8 +74,6 @@ public class BaseTest {
             } catch (Exception e){
                 e.printStackTrace();
             }
-
-
         }
     }
 
