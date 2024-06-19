@@ -1,5 +1,6 @@
 package tests.swipe;
 
+import driver.Platform;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -17,7 +18,12 @@ public class SwipeVertically extends BaseTest{
     public void swipeVertically() {
         By formBtnLoc = AppiumBy.accessibilityId("Forms");
         By activeBtnLoc = AppiumBy.accessibilityId("button-Active");
-        By dialogOKBtnLoc = AppiumBy.id("android:id/button1");
+        By dialogOKBtnLoc;
+        if (Platform.valueOf(platformName).equals(Platform.IOS)){
+            dialogOKBtnLoc =  AppiumBy.xpath("//XCUIElementTypeButton[@name=\"OK\"]");
+        } else {
+            dialogOKBtnLoc = AppiumBy.id("android:id/button1");
+        }
 
         AppiumDriver appiumDriver = getDriver();
 
@@ -26,7 +32,13 @@ public class SwipeVertically extends BaseTest{
 
         // Make sure that We are on the target screen before swiping up/down/left/right/any direction
         WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15L));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Form components\")")));
+        By bySel;
+        if (Platform.valueOf(platformName).equals(Platform.IOS)){
+            bySel = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Form components\"]");
+        } else {
+            bySel = AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Form components\")");
+        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(bySel));
 
 
         // Swipe up before interacting

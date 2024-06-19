@@ -14,7 +14,7 @@ public class AuthenticationTest extends BaseTest{
     public void loginWithCreds(LoginCred loginCred){
         AppiumDriver appiumDriver = getDriver();
         LoginFlow loginFlow = new LoginFlow(
-                appiumDriver, loginCred.getUsername(), loginCred.getPassword()
+                appiumDriver, platformName, loginCred.getUsername(), loginCred.getPassword()
         );
             loginFlow.gotoLoginScreen();
             loginFlow.login();

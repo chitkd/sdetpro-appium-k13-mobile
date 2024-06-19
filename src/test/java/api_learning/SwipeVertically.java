@@ -27,9 +27,6 @@ public class SwipeVertically {
             WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(15L));
             wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Form components\")")));
 
-            // Check to see the active button displayed
-            boolean isActiveBtnDisplay = false;
-
             // Swipe up before interacting
             Dimension windowSize = appiumDriver.manage().window().getSize();
             int screenWidth = windowSize.getWidth();

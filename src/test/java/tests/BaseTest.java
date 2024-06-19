@@ -20,7 +20,7 @@ import java.util.*;
 public class BaseTest {
     private static final List<DriverFactory> driverThreadPool = Collections.synchronizedList(new ArrayList<>());
     private static ThreadLocal<DriverFactory> driverThread;
-    private String platformName;
+    protected String platformName;
     private String platformVersion;
     private String systemPort;
     private String udid;
@@ -31,8 +31,7 @@ public class BaseTest {
     }
 
     @BeforeTest
-    @Parameters({"systemPort", "udid"})
-    public void initAppiumDriverSession(String systemPort, String udid){
+    public void initAppiumDriverSession(){
         driverThread = ThreadLocal.withInitial(() -> {
             DriverFactory driverThread = new DriverFactory();
             driverThreadPool.add(driverThread);

@@ -11,7 +11,7 @@ public class TestComponentBasedModel {
         AppiumDriver appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
 
         try{
-            BasePage page = new BasePage(appiumDriver);
+            BasePage page = new BasePage(appiumDriver, Platform.ANDROID.toString());
             NavComponent navComponent = page.navComponent();
 
             // Navigate to the login screen

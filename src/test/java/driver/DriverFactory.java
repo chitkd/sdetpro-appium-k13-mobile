@@ -18,7 +18,6 @@ public class DriverFactory {
         desiredCapabilities.setCapability(AndroidCapabilityType.PLATFORM_NAME, "Android");
         desiredCapabilities.setCapability(AndroidCapabilityType.AUTOMATION_NAME_OPTION, "uiautomator2");
         desiredCapabilities.setCapability(AndroidCapabilityType.UDID_OPTION, "emulator-5554");
-        //desiredCapabilities.setCapability(MobileCapabilityType.UDID_OPTION, "R5CR807N3CY");
         desiredCapabilities.setCapability(AndroidCapabilityType.APP_PACKAGE_OPTION, "com.wdiodemoapp");
         desiredCapabilities.setCapability(AndroidCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
         URL appiumServer = null;
@@ -80,12 +79,10 @@ public class DriverFactory {
                case IOS:
                    desiredCapabilities = new DesiredCapabilities();
                    desiredCapabilities.setCapability(IOSCapabilityType.AUTOMATION_NAME_OPTION, "XCUITest");
-                   desiredCapabilities.setCapability(IOSCapabilityType.UDID_OPTION, uuid);
+                   desiredCapabilities.setCapability(IOSCapabilityType.DEVICE_NAME_OPTION, uuid);
                    desiredCapabilities.setCapability(IOSCapabilityType.PLATFORM_VERSION_OPTION, platformVersion);
-                   desiredCapabilities.setCapability(IOSCapabilityType.SYSTEM_PORT, systemPort);
-                   desiredCapabilities.setCapability(IOSCapabilityType.BUNDLE_ID, "com.wdiodemoapp");
-                   desiredCapabilities.setCapability(XCUITestOptions.WDA_LOCAL_PORT_OPTION, "com.wdiodemoapp");
-                   desiredCapabilities.setCapability(IOSCapabilityType.APP_ACTIVITY_OPTION, "com.wdiodemoapp.MainActivity");
+                   desiredCapabilities.setCapability(IOSCapabilityType.BUNDLE_ID, "org.reactjs.native.example.wdiodemoapp");
+                   desiredCapabilities.setCapability(XCUITestOptions.WDA_LOCAL_PORT_OPTION, systemPort);
                    appiumDriver = new IOSDriver(appiumServer, desiredCapabilities);
                    break;
            }

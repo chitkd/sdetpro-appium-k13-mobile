@@ -5,17 +5,19 @@ import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Step;
 import models.components.login.LoginDialog;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage{
     private final static By usernameSel = AppiumBy.accessibilityId("input-email");
     private final static By passwordSel = AppiumBy.accessibilityId("input-password");
     private final static By loginBtnSel = AppiumBy.accessibilityId("button-LOGIN");
-    private final static By invalidEmailTxtSel = AppiumBy.xpath("//*[contains(@text, 'valid email')]");
+    private final static By invalidEmailTxtSelAndroid = AppiumBy.xpath("//*[contains(@text, 'valid email')]");
+    private final static By invalidEmailTxtSeliOS = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Please enter a valid email address\"]");
     private final static By invalidPasswordTxtSel = AppiumBy.xpath("//*[contains(@text, 'at least 8 characters')]");
 
-    public LoginPage(AppiumDriver appiumDriver) {
-        super(appiumDriver);
+    public LoginPage(AppiumDriver appiumDriver, String platformName) {
+        super(appiumDriver, platformName);
     }
 
     public WebElement username(){
@@ -44,7 +46,12 @@ public class LoginPage extends BasePage{
         loginBtn().click();
     }
     public String getInvalidEmailStr(){
-        return component.findElement(invalidEmailTxtSel).getText();
+        if (Platform.valueOf(platformName).equals(Platform.ANDROID)){
+            return component.findElement(invalidEmailTxtSelAndroid).getText();
+        }
+        else {
+            return component.findElement(invalidEmailTxtSeliOS).getText();
+        }
     }
 
     public String getInvalidPasswordStr(){
@@ -52,7 +59,7 @@ public class LoginPage extends BasePage{
     }
 
     public LoginDialog loginDialog(){
-        return new LoginDialog(appiumDriver);
+        return new LoginDialog(appiumDriver, platformName);
     }
 }
 

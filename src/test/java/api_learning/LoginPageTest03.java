@@ -12,7 +12,8 @@ public class LoginPageTest03 {
 //            By navLoginBtnLoc = AppiumBy.accessibilityId("Login");
 //            WebElement navLoginBtnEle = appiumDriver.findElement(navLoginBtnLoc);
 //            navLoginBtnEle.click();
-            LoginPage03 loginPage = new LoginPage03(appiumDriver);
+            String platformName = "ANDROID";
+            LoginPage03 loginPage = new LoginPage03(appiumDriver, platformName);
             loginPage
                     .inputUsername("cindydinh03@sth.com")
                     .inputPassword("9876543210")

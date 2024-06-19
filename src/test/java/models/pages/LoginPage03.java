@@ -11,8 +11,8 @@ public class LoginPage03 extends BasePage{
     private final static By loginBtnSel = AppiumBy.accessibilityId("button-LOGIN");
 
     // Scope 02: Constructor to POM_AdvancedConcept.md the appiumDriver
-    public LoginPage03(AppiumDriver appiumDriver) {
-        super(appiumDriver);
+    public LoginPage03(AppiumDriver appiumDriver, String platformName) {
+        super(appiumDriver, platformName);
     }
 
     // Scope 03: INTRODUCING MAIN INTERACTION METHODS
