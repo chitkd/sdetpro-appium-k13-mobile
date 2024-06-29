@@ -9,8 +9,8 @@ import org.openqa.selenium.By;
 public class BasePage extends Component {
     protected final AppiumDriver appiumDriver;
     public BasePage(AppiumDriver appiumDriver, String platformName) {
-        super(appiumDriver, appiumDriver.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"wdiodemoapp\"]/XCUIElementTypeWindow")), platformName);
-        //super(appiumDriver, appiumDriver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout")), platformName);
+        //super(appiumDriver, appiumDriver.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"wdiodemoapp\"]/XCUIElementTypeWindow")), platformName);
+        super(appiumDriver, appiumDriver.findElement(By.xpath("//hierarchy/android.widget.FrameLayout")), platformName);
         this.appiumDriver = appiumDriver;
     }
 

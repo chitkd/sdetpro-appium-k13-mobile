@@ -11,24 +11,24 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-<!--    <test name="Group 02">-->
-<!--        <parameter name="systemPort" value="8400"/>-->
-<!--        <parameter name="udid" value="emulator-5554"/>-->
-<!--        <parameter name="platformName" value="ANDROID"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.swipe.SwipeVertically"/>-->
-<!--            <class name="tests.authen.AuthenticationTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-    <test name="IOS">
-        <parameter name="systemPort" value="8200"/>
-        <parameter name="udid" value="iPhone 14"/>
-        <parameter name="platformName" value="IOS"/>
-        <parameter name="platformVersion" value="16.4"/>
+    <test name="Group 02">
+        <parameter name="systemPort" value="8400"/>
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="platformName" value="ANDROID"/>
         <classes>
-<!--            <class name="tests.swipe.SwipeVertically"/>-->
+            <class name="tests.swipe.SwipeVertically"/>
             <class name="tests.authen.AuthenticationTest"/>
         </classes>
     </test>
+
+<!--    <test name="IOS">-->
+<!--        <parameter name="systemPort" value="8200"/>-->
+<!--        <parameter name="udid" value="iPhone 14"/>-->
+<!--        <parameter name="platformName" value="IOS"/>-->
+<!--        <parameter name="platformVersion" value="16.4"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="tests.swipe.SwipeVertically"/>&ndash;&gt;-->
+<!--            <class name="tests.authen.AuthenticationTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
