@@ -16,8 +16,8 @@ public class LoginDialog extends BasePage {
     private final static By dialogMsgLoc = AppiumBy.id("android:id/message");
     private final static By dialogBtnSel = AppiumBy.id("android:id/button1");
 
-    public LoginDialog(AppiumDriver appiumDriver, String platformName) {
-        super(appiumDriver, platformName);
+    public LoginDialog(AppiumDriver appiumDriver) {
+        super(appiumDriver);
     }
 
     public String getDialogMsg(){

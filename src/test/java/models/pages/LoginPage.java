@@ -2,9 +2,11 @@ package models.pages;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.internal.CapabilityHelpers;
 import io.qameta.allure.Step;
 import models.components.login.LoginDialog;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 
@@ -16,8 +18,9 @@ public class LoginPage extends BasePage{
     private final static By invalidEmailTxtSeliOS = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Please enter a valid email address\"]");
     private final static By invalidPasswordTxtSel = AppiumBy.xpath("//*[contains(@text, 'at least 8 characters')]");
 
-    public LoginPage(AppiumDriver appiumDriver, String platformName) {
-        super(appiumDriver, platformName);
+    // Get platform info under test session
+    public LoginPage(AppiumDriver appiumDriver) {
+        super(appiumDriver);
     }
 
     public WebElement username(){
@@ -46,12 +49,13 @@ public class LoginPage extends BasePage{
         loginBtn().click();
     }
     public String getInvalidEmailStr(){
-        if (Platform.valueOf(platformName).equals(Platform.ANDROID)){
-            return component.findElement(invalidEmailTxtSelAndroid).getText();
-        }
-        else {
-            return component.findElement(invalidEmailTxtSeliOS).getText();
-        }
+        return component.findElement(invalidEmailTxtSelAndroid).getText();
+//        if (Platform.valueOf(currentPlatform).equals(Platform.ANDROID)){
+//            return component.findElement(invalidEmailTxtSelAndroid).getText();
+//        }
+//        else {
+//            return component.findElement(invalidEmailTxtSeliOS).getText();
+//        }
     }
 
     public String getInvalidPasswordStr(){
@@ -59,7 +63,7 @@ public class LoginPage extends BasePage{
     }
 
     public LoginDialog loginDialog(){
-        return new LoginDialog(appiumDriver, platformName);
+        return new LoginDialog(appiumDriver);
     }
 }
 

@@ -5,14 +5,12 @@ import models.pages.BasePage;
 
 public class BaseFlow {
     protected final AppiumDriver appiumDriver;
-    protected final String platformName;
 
-    public BaseFlow(AppiumDriver appiumDriver, String platformName) {
+    public BaseFlow(AppiumDriver appiumDriver) {
         this.appiumDriver = appiumDriver;
-        this.platformName = platformName;
     }
 
     public void gotoLoginScreen(){
-        new BasePage(appiumDriver, platformName).navComponent().clickOnLoginIcon();
+        new BasePage(appiumDriver).navComponent().clickOnLoginIcon();
     }
 }

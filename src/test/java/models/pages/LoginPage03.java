@@ -12,7 +12,7 @@ public class LoginPage03 extends BasePage{
 
     // Scope 02: Constructor to POM_AdvancedConcept.md the appiumDriver
     public LoginPage03(AppiumDriver appiumDriver, String platformName) {
-        super(appiumDriver, platformName);
+        super(appiumDriver);
     }
 
     // Scope 03: INTRODUCING MAIN INTERACTION METHODS

@@ -17,12 +17,10 @@ public class Component {
     protected AppiumDriver appiumDriver;
     protected WebElement component;
     protected WebDriverWait wait;
-    protected String platformName;
 
-    public Component(AppiumDriver appiumDriver, WebElement component, String platformName) {
+    public Component(AppiumDriver appiumDriver, WebElement component) {
         this.appiumDriver = appiumDriver;
         this.component = component;
-        this.platformName = platformName;
         this.wait = new WebDriverWait(this.appiumDriver, Duration.ofSeconds(10L));
     }
 

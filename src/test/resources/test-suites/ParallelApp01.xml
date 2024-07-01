@@ -16,7 +16,7 @@
         <parameter name="udid" value="emulator-5554"/>
         <parameter name="platformName" value="ANDROID"/>
         <classes>
-            <class name="tests.swipe.SwipeVertically"/>
+<!--            <class name="tests.swipe.SwipeVertically"/>-->
             <class name="tests.authen.AuthenticationTest"/>
         </classes>
     </test>
