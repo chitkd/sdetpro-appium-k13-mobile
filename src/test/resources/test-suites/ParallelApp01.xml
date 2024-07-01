@@ -27,7 +27,7 @@
         <parameter name="platformName" value="IOS"/>
         <parameter name="platformVersion" value="16.4"/>
         <classes>
-<!--            <class name="tests.swipe.SwipeVertically"/>-->
+            <class name="tests.swipe.SwipeVertically"/>
             <class name="tests.authen.AuthenticationTest"/>
         </classes>
     </test>

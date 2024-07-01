@@ -13,18 +13,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 //@ComponentIdSelector(value = "android:id/parentPanel")
 @ComponentXpathSelector(value = "//XCUIElementTypeAlert[@name=\"This button is\"]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]")
 public class LoginDialog extends BasePage {
-    private final static By dialogMsgLoc = AppiumBy.id("android:id/message");
-    private final static By dialogBtnSel = AppiumBy.id("android:id/button1");
+    private final static By dialogMsgLocAndroid = AppiumBy.id("android:id/message");
+    private final static By dialogMsgLociOS = AppiumBy.id("");
+    private final static By dialogBtnSelAndroid = AppiumBy.id("android:id/button1");
+    private final static By dialogBtnSeliOS = AppiumBy.id("");
 
-    public LoginDialog(AppiumDriver appiumDriver, String platformName) {
-        super(appiumDriver, platformName);
+    public LoginDialog(AppiumDriver appiumDriver) {
+        super(appiumDriver);
     }
 
     public String getDialogMsg(){
-        return (wait.until(ExpectedConditions.visibilityOfElementLocated(dialogMsgLoc))).getText();
+        return (wait.until(ExpectedConditions.visibilityOfElementLocated(dialogMsgLociOS))).getText();
     }
 
     public WebElement okBtn(){
-        return component.findElement(dialogBtnSel);
+        return component.findElement(dialogBtnSeliOS);
     }
 }

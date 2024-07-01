@@ -14,10 +14,11 @@ public class LoginPage extends BasePage{
     private final static By loginBtnSel = AppiumBy.accessibilityId("button-LOGIN");
     private final static By invalidEmailTxtSelAndroid = AppiumBy.xpath("//*[contains(@text, 'valid email')]");
     private final static By invalidEmailTxtSeliOS = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Please enter a valid email address\"]");
-    private final static By invalidPasswordTxtSel = AppiumBy.xpath("//*[contains(@text, 'at least 8 characters')]");
+    private final static By invalidPasswordTxtSelAndroid = AppiumBy.xpath("//*[contains(@text, 'at least 8 characters')]");
+    private final static By invalidPasswordTxtSeliOS = AppiumBy.xpath("//XCUIElementTypeOther[@name=\"\uDB80\uDF41 Please enter at least 8 characters\"]");
 
-    public LoginPage(AppiumDriver appiumDriver, String platformName) {
-        super(appiumDriver, platformName);
+    public LoginPage(AppiumDriver appiumDriver) {
+        super(appiumDriver);
     }
 
     public WebElement username(){
@@ -35,7 +36,7 @@ public class LoginPage extends BasePage{
     }
     @Step("Input password as {password}")
     public void inputPassword(String password){
-        username().sendKeys(password);
+        password().sendKeys(password);
     }
     public WebElement loginBtn(){
         return component.findElement(loginBtnSel);
@@ -46,20 +47,16 @@ public class LoginPage extends BasePage{
         loginBtn().click();
     }
     public String getInvalidEmailStr(){
-        if (Platform.valueOf(platformName).equals(Platform.ANDROID)){
-            return component.findElement(invalidEmailTxtSelAndroid).getText();
-        }
-        else {
-            return component.findElement(invalidEmailTxtSeliOS).getText();
-        }
+        //return component.findElement(invalidEmailTxtSelAndroid).getText();
+        return component.findElement(invalidEmailTxtSeliOS).getText();
     }
 
     public String getInvalidPasswordStr(){
-        return component.findElement(invalidPasswordTxtSel).getText();
+        return component.findElement(invalidPasswordTxtSeliOS).getText();
     }
 
     public LoginDialog loginDialog(){
-        return new LoginDialog(appiumDriver, platformName);
+        return new LoginDialog(appiumDriver);
     }
 }
 

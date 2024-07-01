@@ -10,10 +10,13 @@ public class LoginFlow extends BaseFlow {
     private String username;
     private String password;
 
-    public LoginFlow(AppiumDriver appiumDriver, String platformName, String username, String password) {
-        super(appiumDriver, platformName);
+    LoginPage loginPage;
+
+    public LoginFlow(AppiumDriver appiumDriver, String username, String password) {
+        super(appiumDriver);
         this.username = username;
         this.password = password;
+        loginPage = new LoginPage(appiumDriver);
     }
 
     public void setUsername(String username) {
@@ -25,7 +28,6 @@ public class LoginFlow extends BaseFlow {
     }
 
     public void login(){
-        LoginPage loginPage = new LoginPage(appiumDriver, platformName);
         if (!username.isEmpty()){
             loginPage.username().clear();
             loginPage.inputUsername(username);
@@ -60,7 +62,7 @@ public class LoginFlow extends BaseFlow {
     private void verifyCorrectLoginCreds() {
         String expectedSuccessLoginStr = "You are logged in!";
         //String expectedSuccessLoginStr = "You are logged in!";
-        LoginPage loginPage = new LoginPage(appiumDriver, platformName);
+        LoginPage loginPage = new LoginPage(appiumDriver);
         String actualSuccessLoginStr = loginPage.loginDialog().getDialogMsg();
 
         Assert.assertEquals(actualSuccessLoginStr, expectedSuccessLoginStr, "[ERR] Success Login string incorrect!");
@@ -68,8 +70,8 @@ public class LoginFlow extends BaseFlow {
     }
 
     private void verifyIncorrectEmailLogin() {
-        String expectedInvalidEmailStr = "Please enter a valid email address.";
-        LoginPage loginPage = new LoginPage(appiumDriver, platformName);
+        String expectedInvalidEmailStr = "Please enter a valid email address";
+        LoginPage loginPage = new LoginPage(appiumDriver);
         String actualInvalidEmailStr = loginPage.getInvalidEmailStr();
 
         if (!actualInvalidEmailStr.equalsIgnoreCase(expectedInvalidEmailStr)){
@@ -79,7 +81,7 @@ public class LoginFlow extends BaseFlow {
 
     private void verifyIncorrectPassword() {
         String expectedInvalidPasswordStr = "Please enter at least 8 characters";
-        LoginPage loginPage = new LoginPage(appiumDriver, platformName);
+        LoginPage loginPage = new LoginPage(appiumDriver);
         String actualInvalidPasswordStr = loginPage.getInvalidPasswordStr();
 
         if (!actualInvalidPasswordStr.equalsIgnoreCase(expectedInvalidPasswordStr)){

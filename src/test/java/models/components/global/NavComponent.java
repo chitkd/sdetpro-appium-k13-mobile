@@ -11,8 +11,8 @@ import utils.ElementHandler;
 
 import java.util.Map;
 
-@ComponentXpathSelector(value = "//android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View")
-//@ComponentXpathSelector(value = "(//XCUIElementTypeOther[@name=\"Home Webview Login Forms Swipe Drag\"])[2]")
+//@ComponentXpathSelector(value = "//android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View")
+@ComponentXpathSelector(value = "(//XCUIElementTypeOther[@name=\"Home Webview Login Forms Swipe Drag\"])[2]")
 public class NavComponent extends Component {
     private final AppiumDriver appiumDriver;
     private final static By homeIconSel = AppiumBy.accessibilityId("abc");
@@ -31,8 +31,8 @@ public class NavComponent extends Component {
             Platform.ANDROID, AppiumBy.xpath(""),
             Platform.IOS, AppiumBy.xpath("//XCUIElementTypeApplication[@name=\"wdiodemoapp\"]/XCUIElementTypeWindow")
     );
-    public NavComponent(AppiumDriver appiumDriver, WebElement component, String platformName) {
-        super(appiumDriver, component, platformName);
+    public NavComponent(AppiumDriver appiumDriver, WebElement component) {
+        super(appiumDriver, component);
         this.appiumDriver = appiumDriver;
     }
 
