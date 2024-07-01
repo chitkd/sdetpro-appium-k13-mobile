@@ -19,7 +19,6 @@ public class AuthenticationTest extends BaseTest{
             loginFlow.gotoLoginScreen();
             loginFlow.login();
             loginFlow.verifyLogin();
-
     }
 
     @DataProvider
